@@ -30,7 +30,7 @@ export default function App() {
     <div style={{ backgroundColor: '#F8F4EE', minHeight: '100vh', position: 'relative' }}>
       {/* Hide ribbons on mobile — 300px wide panels destroy small screens */}
       <ScrollToTop />
-      <div className="hidden md:block">
+      <div className="hidden lg:block">
         <GoldWaves />
       </div>
       <Navbar />
