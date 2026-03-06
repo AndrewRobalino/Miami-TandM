@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 60" fill="none">
+  <!-- Gold accent bar -->
+  <rect x="0" y="22" width="4" height="36" fill="#C9A84C" rx="2"/>
+  <!-- MT monogram -->
+  <text x="14" y="52" font-family="Playfair Display, serif" font-size="42" font-weight="700" fill="#1A1A1A">MT</text>
+  <!-- Divider -->
+  <rect x="80" y="10" width="1.5" height="40" fill="#DDD9D2"/>
+  <!-- Company name stack -->
+  <text x="90" y="30" font-family="Playfair Display, serif" font-size="13" font-weight="600" fill="#1A1A1A" letter-spacing="1.5">MIAMI TAXES</text>
+  <text x="90" y="48" font-family="Inter, sans-serif" font-size="9" font-weight="400" fill="#6B7280" letter-spacing="3">& MANAGEMENT CO.</text>
+</svg>
