@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useNavigate } from 'react-router-dom'
 
 const services = [
   {
@@ -51,7 +52,8 @@ const cardVariant = {
   show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
 }
 
-export default function Services({ onNavigate }) {
+export default function Services() {
+  const navigate = useNavigate()
   return (
     <motion.div
       key="services"
@@ -68,7 +70,7 @@ export default function Services({ onNavigate }) {
         transition={{ duration: 0.5, ease: 'easeOut' }}
         className="mb-12 text-center"
       >
-        <p className="text-accent text-xs tracking-widest uppercase mb-3" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.2em' }}>
+        <p className="text-accent text-xs tracking-widest uppercase mb-3 font-body" style={{ letterSpacing: '0.2em' }}>
           What We Offer
         </p>
         <h2 className="text-4xl md:text-5xl font-heading text-primary mb-4">Our Services</h2>
@@ -86,46 +88,33 @@ export default function Services({ onNavigate }) {
           <motion.div
             key={svc.number}
             variants={cardVariant}
-            className="group relative p-8 border transition-all duration-300 hover:shadow-lg"
-            style={{
-              backgroundColor: '#EEEAE3',
-              border: '1px solid #C9A84C',
-              borderRadius: '2px',
-            }}
+            className="group relative p-8 border border-accent bg-surface rounded-sm transition-all duration-300 hover:shadow-lg"
           >
             {/* Number */}
             <div
               className="text-6xl font-heading font-bold mb-4 leading-none"
-              style={{ color: '#DDD9D2', fontFamily: 'Playfair Display, serif' }}
+              style={{ color: '#DDD9D2' }}
             >
               {svc.number}
             </div>
 
             {/* Title */}
             <h3 className="text-xl font-heading font-semibold text-primary mb-1">{svc.title}</h3>
-            <p className="text-xs text-muted uppercase tracking-widest mb-4" style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.12em' }}>
+            <p className="text-xs text-muted uppercase tracking-widest mb-4 font-body" style={{ letterSpacing: '0.12em' }}>
               {svc.subtitle}
             </p>
 
             {/* Description */}
-            <p className="text-sm text-muted leading-relaxed mb-6" style={{ fontFamily: 'Inter, sans-serif' }}>
+            <p className="text-sm text-muted leading-relaxed mb-6 font-body">
               {svc.description}
             </p>
 
             {/* Price badge — clickable on consulting card */}
             {svc.price === 'Contact Us' ? (
               <button
-                onClick={() => onNavigate('contact')}
-                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium tracking-wide transition-all duration-200 hover:bg-accent hover:text-white"
-                style={{
-                  fontFamily: 'Inter, sans-serif',
-                  backgroundColor: 'transparent',
-                  color: '#C9A84C',
-                  border: '1px solid #C9A84C',
-                  borderRadius: '2px',
-                  letterSpacing: '0.04em',
-                  cursor: 'pointer',
-                }}
+                onClick={() => navigate('/contact')}
+                className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium font-body tracking-wide border border-accent text-accent rounded-sm cursor-pointer transition-all duration-200 hover:bg-accent hover:text-white"
+                style={{ letterSpacing: '0.04em' }}
               >
                 {svc.price}
                 <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
@@ -134,14 +123,8 @@ export default function Services({ onNavigate }) {
               </button>
             ) : (
               <div
-                className="inline-block px-4 py-2 text-sm font-medium tracking-wide"
-                style={{
-                  fontFamily: 'Inter, sans-serif',
-                  backgroundColor: '#C9A84C',
-                  color: 'white',
-                  borderRadius: '2px',
-                  letterSpacing: '0.04em',
-                }}
+                className="inline-block px-4 py-2 text-sm font-medium font-body tracking-wide bg-accent text-white rounded-sm"
+                style={{ letterSpacing: '0.04em' }}
               >
                 {svc.price}
               </div>
@@ -161,16 +144,15 @@ export default function Services({ onNavigate }) {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.6, ease: 'easeOut' }}
-        className="text-center py-8 border-t"
-        style={{ borderColor: '#DDD9D2' }}
+        className="text-center py-8 border-t border-border"
       >
-        <p className="text-muted text-sm mb-5" style={{ fontFamily: 'Inter, sans-serif' }}>
+        <p className="text-muted text-sm mb-5 font-body">
           Not sure which service you need? Contact us — we'll point you in the right direction.
         </p>
         <button
-          onClick={() => onNavigate('contact')}
-          className="px-8 py-3 border text-sm tracking-widest uppercase font-medium transition-all duration-300 hover:bg-accent hover:text-white hover:border-accent"
-          style={{ fontFamily: 'Inter, sans-serif', letterSpacing: '0.12em', borderColor: '#1A1A1A', color: '#1A1A1A' }}
+          onClick={() => navigate('/contact')}
+          className="px-8 py-3 border border-primary text-primary text-sm tracking-widest uppercase font-medium font-body transition-all duration-300 hover:bg-accent hover:text-white hover:border-accent"
+          style={{ letterSpacing: '0.12em' }}
         >
           Contact Us
         </button>

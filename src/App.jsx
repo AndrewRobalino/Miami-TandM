@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Landing from './components/Landing'
@@ -9,41 +10,35 @@ import Footer from './components/Footer'
 import GoldWaves from './components/GoldWaves'
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState(null)
+  const location = useLocation()
+  const isLanding = location.pathname === '/'
 
-  const navigate = (section) => setActiveSection(section)
-  const goHome = () => setActiveSection(null)
-
-  // Lock body scroll on landing page, restore it on section pages
+  // Lock body scroll on landing page (desktop only — mobile needs to scroll)
   useEffect(() => {
-    document.body.style.overflow = activeSection === null ? 'hidden' : ''
+    const isDesktop = window.matchMedia('(min-width: 1024px)').matches
+    document.body.style.overflow = (isLanding && isDesktop) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [activeSection])
+  }, [isLanding])
 
   return (
     <div style={{ backgroundColor: '#F8F4EE', minHeight: '100vh', position: 'relative' }}>
-      {/* Persistent ribbon — visible on all pages */}
-      <GoldWaves />
-
-      <Navbar activeSection={activeSection} onNavigate={navigate} onHome={goHome} />
+      {/* Hide ribbons on mobile — 300px wide panels destroy small screens */}
+      <div className="hidden md:block">
+        <GoldWaves />
+      </div>
+      <Navbar />
 
       <div style={{ position: 'relative', zIndex: 10 }}>
         <AnimatePresence mode="wait">
-          {activeSection === null && (
-            <Landing key="landing" onNavigate={navigate} />
-          )}
-          {activeSection === 'services' && (
-            <Services key="services" onNavigate={navigate} />
-          )}
-          {activeSection === 'contact' && (
-            <Contact key="contact" onNavigate={navigate} />
-          )}
-          {activeSection === 'about' && (
-            <About key="about" onNavigate={goHome} />
-          )}
+          <Routes key={location.pathname}>
+            <Route path="/" element={<Landing />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/about" element={<About />} />
+          </Routes>
         </AnimatePresence>
 
-        {activeSection !== null && <Footer />}
+        {!isLanding && <Footer />}
       </div>
     </div>
   )
