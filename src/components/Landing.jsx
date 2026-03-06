@@ -35,7 +35,7 @@ export default function Landing() {
       transition={{ duration: 0.2, ease: 'easeOut' }}
       // h-screen + overflow-hidden = never scrolls
       // items-start + paddingTop = content anchors to top, not pulled down by centering
-      className="min-h-screen lg:h-screen lg:overflow-hidden flex items-start justify-center px-6 relative pt-[64px] sm:pt-[88px]"
+      className="min-h-screen xl:h-screen xl:overflow-hidden flex items-start justify-center px-6 relative pt-[64px] sm:pt-[88px]"
     >
       <div className="w-full max-w-5xl flex flex-col lg:flex-row items-center gap-8 lg:gap-14">
 

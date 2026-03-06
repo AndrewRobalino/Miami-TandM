@@ -21,7 +21,7 @@ export default function App() {
 
   // Lock body scroll on landing page (desktop only — mobile needs to scroll)
   useEffect(() => {
-    const isDesktop = window.matchMedia('(min-width: 1024px)').matches
+    const isDesktop = window.matchMedia('(min-width: 1280px)').matches
     document.body.style.overflow = (isLanding && isDesktop) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
   }, [isLanding])
