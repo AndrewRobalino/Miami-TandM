@@ -1,5 +1,11 @@
 import { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
+
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => { window.scrollTo(0, 0) }, [pathname])
+  return null
+}
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Landing from './components/Landing'
@@ -23,6 +29,7 @@ export default function App() {
   return (
     <div style={{ backgroundColor: '#F8F4EE', minHeight: '100vh', position: 'relative' }}>
       {/* Hide ribbons on mobile — 300px wide panels destroy small screens */}
+      <ScrollToTop />
       <div className="hidden md:block">
         <GoldWaves />
       </div>
